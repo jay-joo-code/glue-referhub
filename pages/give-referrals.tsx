@@ -1,19 +1,16 @@
-import RequestList from "components/give-referral/RequestList"
-import Flex from "components/glue/Flex"
-import SplitScreen from "components/glue/SplitScreen"
-import PageContainer from "components/glue/PageContainer"
-import { useSession } from "next-auth/react"
-import React from "react"
-import Button from "components/glue/Button"
-import Link from "next/link"
-import Image from "next/image"
 import { Space } from "@mantine/core"
-import GlueResponsiveRender from "components/glue/GlueResponsiveRender"
-import useIsMobile from "hooks/glue/isMobile"
+import RequestList from "components/give-referral/RequestList"
+import Button from "components/glue/Button"
+import Flex from "components/glue/Flex"
+import PageContainer from "components/glue/PageContainer"
+import SplitScreen from "components/glue/SplitScreen"
+import useIsDevice from "hooks/glue/useIsDevice"
+import { useSession } from "next-auth/react"
+import Link from "next/link"
 
 const GiveReferralsPage = () => {
   const { status } = useSession()
-  const isMobile = useIsMobile()
+  const { isMobile } = useIsDevice()
 
   if (status === "authenticated") {
     return <RequestList />
@@ -35,14 +32,7 @@ const GiveReferralsPage = () => {
             </Link>
           </Flex>
         }
-        illust={
-          <Image
-            src="/illust/professors.svg"
-            alt="professor illustration"
-            width={340}
-            height={340}
-          />
-        }
+        illustPath="/illust/professors.svg"
       />
     </PageContainer>
   )
