@@ -33,10 +33,10 @@ const Footer = () => {
             cursor: "pointer",
           })}
         >
-          template
+          ReferHub
         </Text>
         <Text color="dimmed" size="sm">
-          email@gmail.com
+          cornellreferhub@gmail.com
         </Text>
       </Flex>
     </Flex>

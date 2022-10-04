@@ -73,7 +73,7 @@ const Header = () => {
                     cursor: "pointer",
                   })}
                 >
-                  prosys
+                  ReferHub
                 </Text>
               </Link>
               {/* <Text size="sm" weight={600} color="dimmed">
