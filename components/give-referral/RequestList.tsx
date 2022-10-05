@@ -25,8 +25,8 @@ const RequestList = () => {
 
   return (
     <Container>
-      <Badge>Referring for</Badge>
-      <Title>{company?.name}</Title>
+      <Badge>{company?.name}</Badge>
+      <Title>Referral requests</Title>
       <Space my="6rem" />
       <Flex direction="column" align="center">
         <Image
