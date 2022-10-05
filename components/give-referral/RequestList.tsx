@@ -1,26 +1,9 @@
-import prisma from "lib/glue/prisma"
-import { GetServerSideProps } from "next"
-import React, { useState } from "react"
-import useGlueQuery from "hooks/glue/useGlueQuery"
-import { signOut, useSession } from "next-auth/react"
-import SplitScreen from "components/glue/SplitScreen"
-import {
-  Badge,
-  Container,
-  Input,
-  Space,
-  Text,
-  TextInput,
-  Title,
-  useMantineTheme,
-} from "@mantine/core"
-import useIsDevice from "hooks/glue/useIsDevice"
-import Link from "next/link"
-import Button from "components/glue/Button"
+import { Badge, Container, Space, Text, Title } from "@mantine/core"
 import Flex from "components/glue/Flex"
-import { useRouter } from "next/router"
-import RegisterCompany from "./RegisterCompany"
+import useGlueQuery from "hooks/glue/useGlueQuery"
+import { useSession } from "next-auth/react"
 import Image from "next/image"
+import RegisterCompany from "./RegisterCompany"
 
 const RequestList = () => {
   const { data: sessionData } = useSession()
@@ -38,7 +21,7 @@ const RequestList = () => {
     return <RegisterCompany refetch={refetch} />
   }
 
-  const company = companies[0]
+  const company = companies && companies[0]
 
   return (
     <Container>
