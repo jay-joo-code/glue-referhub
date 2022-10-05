@@ -1,4 +1,4 @@
-import { Space } from "@mantine/core"
+import { Container, Space } from "@mantine/core"
 import RequestList from "components/give-referral/RequestList"
 import Button from "components/glue/Button"
 import Flex from "components/glue/Flex"
@@ -12,28 +12,31 @@ const GiveReferralsPage = () => {
   const { status } = useSession()
   const { isMobile } = useIsDevice()
 
-  if (status === "authenticated") {
-    return <RequestList />
-  }
-
   return (
-    <PageContainer variant="responsive">
-      <Space my={isMobile ? "3rem" : "5rem"} />
-      <SplitScreen
-        title="Start giving referrals"
-        paragraphs={[
-          "Sign in with your company email to start receiving referral requests anonymously.",
-          "Your name and email will only be shown to a requestor if you accept their referral request.",
-        ]}
-        buttons={
-          <Flex>
-            <Link href="/api/auth/signin">
-              <Button size="md">Get started</Button>
-            </Link>
-          </Flex>
-        }
-        illustPath="/illust/professors.svg"
-      />
+    <PageContainer
+      title="Give referrals"
+      variant={status === "authenticated" ? "mobile-only" : "responsive"}
+    >
+      {status === "authenticated" ? (
+        <RequestList />
+      ) : (
+        <Container>
+          <Space my={isMobile ? "3rem" : "5rem"} />
+          <SplitScreen
+            title="Start giving referrals"
+            paragraphs={[
+              "Sign in with your company email to start receiving referral requests anonymously.",
+              "Your name and email will only be shown to a requestor if you accept their referral request.",
+            ]}
+            buttons={[
+              <Link key="get-started" href="/api/auth/signin">
+                <Button size="md">Get started</Button>
+              </Link>,
+            ]}
+            illustPath="/illust/professors.svg"
+          />
+        </Container>
+      )}
     </PageContainer>
   )
 }
