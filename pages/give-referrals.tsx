@@ -7,10 +7,12 @@ import SplitScreen from "components/glue/SplitScreen"
 import useIsDevice from "hooks/glue/useIsDevice"
 import { useSession } from "next-auth/react"
 import Link from "next/link"
+import { useRouter } from "next/router"
 
 const GiveReferralsPage = () => {
   const { status } = useSession()
   const { isMobile } = useIsDevice()
+  const router = useRouter()
 
   return (
     <PageContainer
@@ -29,9 +31,20 @@ const GiveReferralsPage = () => {
               "Your name and email will only be shown to a requestor if you accept their referral request.",
             ]}
             buttons={[
-              <Link key="get-started" href="/api/auth/signin">
-                <Button size="md">Get started</Button>
-              </Link>,
+              <Button
+                key="get-started"
+                size="md"
+                onClick={() => {
+                  router.push({
+                    pathname: "/api/auth/signin",
+                    query: {
+                      callbackUrl: window.location.href,
+                    },
+                  })
+                }}
+              >
+                Get started
+              </Button>,
             ]}
             illustPath="/illust/give-referral.svg"
           />

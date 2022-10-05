@@ -11,7 +11,7 @@ import Flex from "components/glue/Flex"
 import useIsDevice from "hooks/glue/useIsDevice"
 import api from "lib/glue/api"
 import { useSession } from "next-auth/react"
-import Link from "next/link"
+import { useRouter } from "next/router"
 import { useState } from "react"
 import { KeyedMutator } from "swr"
 
@@ -24,6 +24,7 @@ const RegisterCompany = ({ refetch }: IRegisterCompanyProps) => {
   const { isMobile } = useIsDevice()
   const theme = useMantineTheme()
   const [companyName, setCompanyName] = useState<string>("")
+  const router = useRouter()
 
   const handleRegister = async () => {
     await api.post("/glue/company", {
@@ -77,21 +78,21 @@ const RegisterCompany = ({ refetch }: IRegisterCompanyProps) => {
           <Button fullWidth={true} onClick={handleRegister}>
             Register company
           </Button>
-          <Link href="/api/auth/signin">
-            <Button
-              color="button-gray"
-              variant="light"
-              fullWidth={true}
-              // onClick={() => {
-              //   router.push(
-              //     `/api/auth/signin?callbackUrl=${window.location.origin}/give-referrals`
-              //   )
-              //   signOut()
-              // }}
-            >
-              Sign in with a different email
-            </Button>
-          </Link>
+          <Button
+            color="button-gray"
+            variant="light"
+            fullWidth={true}
+            onClick={() => {
+              router.push({
+                pathname: "/api/auth/signin",
+                query: {
+                  callbackUrl: window.location.href,
+                },
+              })
+            }}
+          >
+            Sign in with a different email
+          </Button>
         </Flex>
       </Flex>
     </Container>
