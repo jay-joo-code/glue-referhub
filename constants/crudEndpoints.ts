@@ -1,5 +1,7 @@
 import prisma from "lib/glue/prisma"
 
-const crudEndpoints = {}
+const crudEndpoints = {
+  company: { model: prisma.company },
+}
 
 export default crudEndpoints
