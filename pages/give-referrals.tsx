@@ -33,7 +33,7 @@ const GiveReferralsPage = () => {
                 <Button size="md">Get started</Button>
               </Link>,
             ]}
-            illustPath="/illust/professors.svg"
+            illustPath="/illust/give-referral.svg"
           />
         </Container>
       )}
